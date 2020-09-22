@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>LIG-4</title>
 </head>
 <body>
-    <main>
+    <header><H1>LIG-4</H1></header>
+    <main class="Hidden">
     <div class="board" id="board"></div>
 </main> 
     
     <section>
-    <form action="/action_page.php">
+    <form action="#">
         <label for="fplayer">First Player:</label><br>
         <input type="text" id="fplayer" name="fplayer"><br>
         <label for="splayer">Second Player:</label><br>
         <input type="text" id="splayer" name="splayer"><br><br>
-        <input type="submit" value="Submit">
+        <input type="button" value="Start" id="start" class="start">
       </form>
 
-    <button id="start" class="start"></button>
-    <button id="restart" class="restart"></button>
 </section>
+
+<div class="Hidden"> Congratulations!
+    <button id="restart" class="restart"></button>
+ </div>
+
     <script src="script.js"></script>
 </body>
 </html>
