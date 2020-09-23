@@ -1,3 +1,33 @@
-.Hidden{
-    visibility: hidden;
+#board {
+    display: flex;
+}
+
+.column {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 3px;
+}
+
+.cell {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 1px;
+    width: 50px;
+    height: 50px;
+}
+
+.white {
+    background: white;
+}
+
+.red {
+    background: red;
+}
+
+.black {
+    background: black;
+}
+
+.hidden {
+    display: none;
 }
