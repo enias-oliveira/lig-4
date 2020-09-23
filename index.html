@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Lig-4</title>
 </head>
 <body>
-
-    <main>
+    <header>
+        <h1>Lig-4</h1>
+    </header>
+    <main id="main" class="hidden">
         <div id="board">
 
         </div>
-    </main>
+    </main> 
+    
+    <section id="players">
+        <form action="#">
+            <label for="fPlayer">First Player: </label>
+            <input type="text" id="fPlayer" name="fPlayer">
+            <label for="sPlayer">Second Player: </label>
+            <input type="text" id="sPlayer" name="sPlayer">
+            <input type="button" value="Start" id="start">
+        </form>
+    </section>
+
+    <div class="hidden"> Congratulations!
+        <button id="restart" class="restart"></button>
+    </div>
 
     <script src="script.js"></script>
 </body>

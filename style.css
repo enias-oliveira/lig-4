@@ -5,7 +5,7 @@
 .column {
     border: 1px solid black;
     padding: 5px;
-    margin: 1px;
+    margin: 3px;
 }
 
 .cell {
@@ -26,4 +26,8 @@
 
 .black {
     background: black;
+}
+
+.hidden {
+    display: none;
 }
