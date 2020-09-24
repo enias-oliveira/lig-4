@@ -12,34 +12,32 @@ let boardArray = [
 
 // GLOBAL VARIABLES
 
-let playerOneTurn = true
-let playerTwoTurn = false
+let playerOneTurn = true 
 
-let boardReference = [...boardArray]
 let board = document.getElementById('board')
 let main = document.getElementById('main')
 
 document.getElementById("start").addEventListener("click", start);
-document.getElementById("restart").addEventListener("click", restart);
+
+const topDiv = document.createElement("div")
+topDiv.classList.add("topDiv")
+
+let playerOneName
+let playerTwoName
+
+let gameOn = true
 
 // GAME CONTROLS
 
 function start() {
-    let playerOneName = document.getElementById("fPlayer").value;
-    let playerTwoName = document.getElementById("sPlayer").value;
-
-    console.log(playerOneName, playerTwoName)
+    playerOneName = document.getElementById("fPlayer").value; 
+    playerTwoName = document.getElementById("sPlayer").value;
 
     document.getElementById("players").classList.add("hidden");
     document.getElementById("main").classList.remove("hidden")
 
-    generateBoard(playerOneName, playerTwoName)
+    generateBoard() 
 }
-
-function restart() {
-    location.reload();
-}
-
 
 // RENDERING BOARD IN HTML
 
@@ -62,41 +60,42 @@ function generateBoard() {
             cellDiv.classList.add('cell')
             columnDiv.appendChild(cellDiv)
 
-            if (cell === 0) { cellDiv.classList.add('blank') }
             if (cell === 1) { cellDiv.classList.add('red') }
-            if (cell === 2) { cellDiv.classList.add('black') }
+            else if (cell === 2) { cellDiv.classList.add('black') }
         })
     })
-
-    checkDraw()
-    checkHorizontalWin()
-    checkVerticalWin()
-    checkDiagonalWin()
 
     for (let i = 0; i <= 6; i++) {
         document.getElementById(i).addEventListener('click', makePlay)
     }
+
+    if (gameOn){displayTurn()}
+    else{turnGameOff();
+    document.getElementById("")}
+}
+// DISPLAY PLAYER TURN
+function displayTurn (){
+    let turn = playerOneTurn ? playerOneName : playerTwoName
+    topDiv.innerText = `Player Turn: ${turn}`
+    main.insertBefore(topDiv,board)
 }
 
 // MAKING MOVES IN ARRAY
 
 function makePlay(event) {
-    for (let i = 0; i <= 6; i++) {
-        document.getElementById(i).removeEventListener('click', makePlay)
-    }
-
     let playCurrentDestination = event.currentTarget.id
     let moveIndexDestination = boardArray[playCurrentDestination].lastIndexOf(0)
 
     if (moveIndexDestination === -1) {
-        alert('Coluna preenchida, selecione outra')
+        return
     } else {
-        if (playerOneTurn) {
+        if (playerOneTurn) { //Tirar varável playerTwoTurn ? 
             boardArray[playCurrentDestination][moveIndexDestination] = 1
         } else {
             boardArray[playCurrentDestination][moveIndexDestination] = 2
         }
-
+        
+        winChecker()
         changePlayerTurn()
     }
 
@@ -106,8 +105,7 @@ function makePlay(event) {
 // PLAYER INTERACTIONS
 
 function changePlayerTurn() {
-    playerOneTurn === true ? playerOneTurn = false : playerOneTurn = true
-    playerTwoTurn === true ? playerTwoTurn = false : playerTwoTurn = true
+    playerOneTurn = !playerOneTurn
 }
 
 // WIN CONDITIONS 
@@ -118,16 +116,16 @@ function checkDraw() {
         drawCheckArray.push(column.lastIndexOf(0))
     });
 
-    if (JSON.stringify(drawCheckArray) !== '[-1,-1,-1,-1,-1,-1,-1]') { return }
-    alert('empate')
+    if (JSON.stringify(drawCheckArray) === '[-1,-1,-1,-1,-1,-1,-1]') { displayDraw()}
 }
 
 function checkVerticalWin() {
     boardArray.forEach(column => {
         let columnString = column.join('')
 
-        if (columnString.includes('1111')) { alert('1 Wins Vertical') }
-        if (columnString.includes('2222')) { alert('2 Wins Vertical') }
+        if (columnString.includes('1111')) { displayWinner(playerOneName) }
+        else if (columnString.includes('2222')) { displayWinner(playerTwoName) }
+
     });
 }
 
@@ -154,8 +152,8 @@ function checkHorizontalWin() {
     transposedArray.forEach(column => {
         let columnString = column.join('')
 
-        if (columnString.includes('1111')) { alert('1 Wins Horizontal') }
-        if (columnString.includes('2222')) { alert('2 Wins Horizontal') }
+        if (columnString.includes('1111')) {displayWinner(playerOneName)} 
+        if (columnString.includes('2222')) { displayWinner(playerTwoName) }
     });
 }
 
@@ -179,17 +177,44 @@ function checkDiagonalWin() {
     arrayDiagonalLeft.forEach(column => {
         let columnString = column.join('')
 
-        if (columnString.includes('1111')) { alert('1 wins Diagonal Left') }
-        if (columnString.includes('2222')) { alert('2 wins Diagonal Left') }
+        if (columnString.includes('1111')) { displayWinner(playerOneName)  } 
+        if (columnString.includes('2222')) { displayWinner(playerTwoName)  } 
     });
 
     arrayDiagonalRight.forEach(column => {
         let columnString = column.join('')
 
-        console.log(columnString)
 
-        if (columnString.includes('1111')) { alert('1 wins Right') }
-        if (columnString.includes('2222')) { alert('2 wins Right') }
+        if (columnString.includes('1111')) { displayWinner(playerOneName)}
+        if (columnString.includes('2222')) {displayWinner(playerTwoName)}
     });
 
+}
+
+function winChecker() {
+    checkDraw()
+    checkHorizontalWin()
+    checkVerticalWin()
+    checkDiagonalWin()
+    }
+
+// Criar função que apresenta resultado
+function displayWinner (winner) {
+    gameOn = false
+    topDiv.innerHTML = `<p>Congratulations ${winner}, You Won!</p> <div id="restart">Restart Game</div>`
+    main.insertBefore(topDiv,board)
+    document.getElementById("restart").addEventListener("click",()=>location.reload())
+}
+
+function displayDraw (){
+    gameOn = false
+    topDiv.innerHTML = `<p>That's a draw, try again!</p> <div id="restart">Restart Game</div>`
+    main.insertBefore(topDiv,board)
+    document.getElementById("restart").addEventListener("click",()=>location.reload())
+}
+
+function turnGameOff() {
+     for (let i = 0; i <= 6; i++) {
+        document.getElementById(i).removeEventListener('click', makePlay)
+    }
 }

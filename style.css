@@ -180,7 +180,19 @@ input:focus {
     background-repeat: no-repeat;
 }
 
+.topDiv {
+    color: white;
+    font-size: large;
+    text-align: center;
+    font-weight: bolder;
+    padding: 3rem;
+}
 
+#restart {
+    padding: 0.75Srem;
+    margin: 1rem;
+    background-color: red;
+}
 /* Large desktop */
 
 @media (max-width:1200px) {
