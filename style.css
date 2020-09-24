@@ -1,33 +1,314 @@
-#board {
-    display: flex;
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
 }
 
-.column {
-    border: 1px solid black;
-    padding: 5px;
-    margin: 3px;
-}
-
-.cell {
-    border: 1px solid black;
-    padding: 5px;
-    margin: 1px;
-    width: 50px;
-    height: 50px;
-}
-
-.white {
-    background: white;
-}
-
-.red {
-    background: red;
-}
-
-.black {
-    background: black;
+:root {
+    --color-dark-orange: #E44D22;
+    --color-orange: #ED5B15;
+    --color-light-orange: orange;
+    --color-dark-blue: #1788D0;
+    --color-blue: #329ACC;
+    --color-light-blue: #4CABC8;
+    --color-font-light-blue: rgb(0, 255, 234);
+    --color-almost-white: #F2F6F8;
+    --color-purple: purple;
+    --color-dark-purple: rgb(107, 6, 107);
 }
 
 .hidden {
     display: none;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #0f0f0f70, #1d1d1d2c), url(img/water-vs-fire.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 135%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+
+/*--------------------------START PAGE-------------------------------*/
+
+.players {
+    width: 54vw;
+    height: 89vh;
+    background-color: rgba(10, 10, 10, 0.699);
+    border: 2px solid var(--color-orange);
+    border-radius: 20px;
+}
+
+.title {
+    color: rgb(12, 12, 12);
+    padding-top: 7vh;
+    text-align: center;
+    font-size: 11em;
+    text-shadow: 2px 2px 3px var(--color-blue), 2px 2px 3px rgb(0, 255, 234), 2px 3px 3px rgb(0, 255, 234), -2px -2px 3px var(--color-orange), -2px -2px 2px var(--color-orange);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.playersInputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+.playersInputs div {
+    border: 1px solid rgba(226, 226, 226, 0.801);
+    border-radius: 10px;
+    margin: 10px 20px;
+    text-align: center;
+    color: var(--color-almost-white);
+    padding-top: 3vh;
+    background-color: rgba(29, 29, 29, 0.438);
+}
+
+.playersInputs label {
+    align-self: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.playersInputs input {
+    width: 20vw;
+    height: 6vh;
+    border-radius: 8px;
+    border: 1px solid var(--color-almost-white);
+    margin: 1px 10px;
+    font-size: 1.4em;
+    text-align: center;
+    background-color: #2b2b2bad;
+    /* background-color: #0c0c0cad; */
+}
+
+#fPlayer {
+    color: var(--color-light-orange);
+}
+
+#sPlayer {
+    color: var(--color-font-light-blue);
+}
+
+input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.start input {
+    display: flex;
+    justify-content: center;
+    width: 12vw;
+    height: 7vh;
+    margin: 0 auto;
+    text-transform: uppercase;
+    margin-top: 7vh;
+    font-size: 1.1em;
+    color: var(--color-almost-white);
+    background-color: var(--color-dark-purple);
+    border: 2px solid var(--color-dark-orange);
+    border-radius: 8px;
+    font-family: 'Alegreya SC', serif;
+    box-shadow: 1px 1px 2px var(--color-font-light-blue), -1px -1px 2px var(--color-orange);
+}
+
+.start input:hover {
+    background-color: var(--color-purple);
+    cursor: pointer;
+}
+
+
+/*--------------------------BOARD---------------------------------*/
+
+#board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--color-purple);
+    padding: 1em;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 10, 0.87);
+    box-shadow: 1px 1px 2px var(--color-font-light-blue), -1px -1px 2px var(--color-orange);
+    box-sizing: border-box;
+    min-width: 42vw;
+    max-height: 70vh;
+}
+
+.column {
+    box-sizing: border-box;
+    border: 2px solid rgba(10, 10, 10, 0);
+}
+
+.column:hover {
+    border: 2px solid var(--color-orange);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.cell {
+    border: 1px solid rgb(150, 150, 150);
+    /* border: 1px solid var(--color-purple); */
+    padding: 5px;
+    margin: 1px;
+    width: 70px;
+    height: 70px;
+}
+
+.red {
+    background-image: url(img/fire.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.black {
+    background-image: url(img/water2.png);
+    background-position: center;
+    background-size: 88%;
+    background-repeat: no-repeat;
+}
+
+
+/* Large desktop */
+
+@media (max-width:1200px) {
+    .players {
+        width: 70vw;
+        height: 89vh;
+    }
+    .playersInputs div {
+        min-width: 22vw;
+    }
+    .start input {
+        width: 17vw;
+    }
+}
+
+
+/*-------------------------------RESPONSIVE----------------------------*/
+
+
+/* Tablet in portrait and desktop */
+
+@media (min-width:768px) and (max-width:979px) {
+    body {
+        background-position: bottom;
+        background-size: 170%;
+    }
+    /*----START PAGE------*/
+    .players {
+        width: 67vw;
+        height: 89vh;
+    }
+    .playersInputs div {
+        width: 60vw;
+    }
+    .playersInputs input {
+        width: 25vw;
+        height: 6vh;
+        font-size: 1.4em;
+    }
+    .start input {
+        width: 17vw;
+        height: 8vh;
+    }
+}
+
+
+/* Landscape phones to tablet in portrait */
+
+@media (max-width:767px) {
+    body {
+        background-image: linear-gradient(to bottom, rgba(2, 2, 2, 0.973), rgba(15, 15, 15, 0.185)), url(img/water-vs-fire.jpg);
+        background-position: top;
+        background-size: 390%;
+    }
+    /*----START PAGE------*/
+    .players {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.377);
+        border-radius: 0;
+        border: 0;
+    }
+    .title {
+        font-size: 9em;
+    }
+    .start input {
+        width: 42vw;
+        height: 8vh;
+        margin-top: 7vh;
+        font-size: 1.3em;
+    }
+    .playersInputs {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .playersInputs div {
+        width: 80vw;
+        height: 17vh;
+    }
+    .playersInputs input {
+        width: 70vw;
+        font-size: 1.5em;
+    }
+    .playersInputs label {
+        font-size: 1.5em;
+    }
+    #fPlayer {
+        border: 1px solid var(--color-orange);
+    }
+    #sPlayer {
+        border: 1px solid var(--color-font-light-blue);
+    }
+    /*----BOARD---------*/
+    #board {
+        width: 93vw;
+        max-height: 70vh;
+    }
+    .column {
+        border: 0;
+    }
+    .cell {
+        width: 57px;
+        height: 57px;
+    }
+}
+
+
+/* Phones in landscape and below */
+
+@media (max-width:480px) {
+    /*----START PAGE----*/
+    .title {
+        font-size: 7em;
+    }
+    .playersInputs label {
+        font-size: 1.2em;
+    }
+    .start input {
+        font-size: 1.2em;
+    }
+    /*----BOARD----------*/
+    #board {
+        width: 96vw;
+        height: 48vh;
+    }
+    .cell {
+        width: 45px;
+        height: 45px;
+    }
 }
