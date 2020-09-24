@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500;700;800&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Lig-4</title>
 </head>
-<body>
-    <header>
-        <h1>Lig-4</h1>
-    </header>
-    <main id="main" class="hidden">
-        <div id="board">
 
-        </div>
-    </main> 
-    
-    <section id="players">
+<body>
+    <main id="main" class="hidden">
+        <div id="board"></div>
+    </main>
+
+    <section id="players" class="players">
+        <h2 class="title">Lig-4</h2>
         <form action="#">
-            <label for="fPlayer">First Player: </label>
-            <input type="text" id="fPlayer" name="fPlayer">
-            <label for="sPlayer">Second Player: </label>
-            <input type="text" id="sPlayer" name="sPlayer">
-            <input type="button" value="Start" id="start">
+            <div class="playersInputs">
+                <div>
+                    <label for="fPlayer">Fire Player</label><br>
+                    <input type="text" id="fPlayer" name="fPlayer"><br>
+                </div>
+                <div>
+                    <label for="sPlayer">Water Player</label><br>
+                    <input type="text" id="sPlayer" name="sPlayer"><br><br>
+                </div>
+            </div>
+            <div class="start">
+                <input type="button" value="Start" id="start" class="start">
+            </div>
         </form>
     </section>
 
@@ -32,4 +39,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
