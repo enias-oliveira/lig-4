@@ -38,6 +38,9 @@ body {
 
 /*--------------------------START PAGE-------------------------------*/
 
+
+/*----Base-----*/
+
 .players {
     width: 54vw;
     height: 89vh;
@@ -53,6 +56,9 @@ body {
     font-size: 11em;
     text-shadow: 2px 2px 3px var(--color-blue), 2px 2px 3px rgb(0, 255, 234), 2px 3px 3px rgb(0, 255, 234), -2px -2px 3px var(--color-orange), -2px -2px 2px var(--color-orange);
 }
+
+
+/* --------Players Name---------- */
 
 form {
     display: flex;
@@ -96,9 +102,19 @@ form {
 
 #fPlayer {
     color: var(--color-light-orange);
+    border: 1px solid var(--color-orange);
 }
 
 #sPlayer {
+    color: var(--color-font-light-blue);
+    border: 1px solid var(--color-font-light-blue);
+}
+
+#lfPlayer {
+    color: var(--color-light-orange);
+}
+
+#lsPlayer {
     color: var(--color-font-light-blue);
 }
 
@@ -106,6 +122,9 @@ input:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 }
+
+
+/* --------Start Button---------- */
 
 .start input {
     display: flex;
@@ -142,8 +161,8 @@ input:focus {
     background-color: rgba(10, 10, 10, 0.87);
     box-shadow: 1px 1px 2px var(--color-font-light-blue), -1px -1px 2px var(--color-orange);
     box-sizing: border-box;
-    min-width: 42vw;
-    max-height: 70vh;
+    min-width: 45vw;
+    max-height: 78vh;
 }
 
 .column {
@@ -152,7 +171,7 @@ input:focus {
 }
 
 .column:hover {
-    border: 2px solid var(--color-orange);
+    border: 2px solid rgb(179, 13, 179);
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -162,9 +181,12 @@ input:focus {
     /* border: 1px solid var(--color-purple); */
     padding: 5px;
     margin: 1px;
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
 }
+
+
+/*-------Players-------*/
 
 .red {
     background-image: url(img/fire.png);
@@ -180,19 +202,52 @@ input:focus {
     background-repeat: no-repeat;
 }
 
+
+/*-------Player Turn----*/
+
 .topDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     color: white;
-    font-size: large;
+    font-size: 2em;
     text-align: center;
     font-weight: bolder;
-    padding: 3rem;
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 10, 0.87);
+    box-shadow: 1px 1px 2px var(--color-font-light-blue), -1px -1px 2px var(--color-orange);
 }
 
+
+/*-------Restart Button--*/
+
 #restart {
-    padding: 0.75Srem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6em;
     margin: 1rem;
-    background-color: red;
+    width: 20vw;
+    height: 6vh;
+    border: 2px solid var(--color-dark-orange);
+    background-color: var(--color-purple);
+    border-radius: 8px;
+    font-family: 'Alegreya SC', serif;
+    box-shadow: 1px 1px 2px var(--color-font-light-blue), -1px -1px 2px var(--color-orange);
 }
+
+#restart:hover {
+    cursor: pointer;
+    background-color: var(--color-dark-purple);
+}
+
+
+/*-------------------------------RESPONSIVE----------------------------*/
+
+
 /* Large desktop */
 
 @media (max-width:1200px) {
@@ -209,19 +264,16 @@ input:focus {
 }
 
 
-/*-------------------------------RESPONSIVE----------------------------*/
-
-
 /* Tablet in portrait and desktop */
 
 @media (min-width:768px) and (max-width:979px) {
     body {
-        background-position: bottom;
-        background-size: 170%;
+        background-position: center;
+        background-size: 270%;
     }
     /*----START PAGE------*/
     .players {
-        width: 67vw;
+        width: 80vw;
         height: 89vh;
     }
     .playersInputs div {
@@ -235,6 +287,11 @@ input:focus {
     .start input {
         width: 17vw;
         height: 8vh;
+    }
+    /*--Restart Button---*/
+    #restart {
+        width: 30vw;
+        height: 6vh;
     }
 }
 
@@ -280,12 +337,6 @@ input:focus {
     .playersInputs label {
         font-size: 1.5em;
     }
-    #fPlayer {
-        border: 1px solid var(--color-orange);
-    }
-    #sPlayer {
-        border: 1px solid var(--color-font-light-blue);
-    }
     /*----BOARD---------*/
     #board {
         width: 93vw;
@@ -297,6 +348,16 @@ input:focus {
     .cell {
         width: 57px;
         height: 57px;
+    }
+    /*----Player Turn----*/
+    .topDiv {
+        font-size: 1.5em;
+    }
+    /*--Restart Button---*/
+    #restart {
+        font-size: 1em;
+        width: 50vw;
+        height: 7vh;
     }
 }
 
@@ -322,5 +383,15 @@ input:focus {
     .cell {
         width: 45px;
         height: 45px;
+    }
+    /*----Player Turn----*/
+    .topDiv {
+        font-size: 1.3em;
+    }
+    /*--Restart Button---*/
+    #restart {
+        font-size: 0.9em;
+        width: 50vw;
+        height: 7vh;
     }
 }

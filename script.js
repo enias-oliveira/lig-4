@@ -12,7 +12,7 @@ let boardArray = [
 
 // GLOBAL VARIABLES
 
-let playerOneTurn = true 
+let playerOneTurn = true
 
 let board = document.getElementById('board')
 let main = document.getElementById('main')
@@ -30,13 +30,13 @@ let gameOn = true
 // GAME CONTROLS
 
 function start() {
-    playerOneName = document.getElementById("fPlayer").value; 
+    playerOneName = document.getElementById("fPlayer").value;
     playerTwoName = document.getElementById("sPlayer").value;
 
     document.getElementById("players").classList.add("hidden");
     document.getElementById("main").classList.remove("hidden")
 
-    generateBoard() 
+    generateBoard()
 }
 
 // RENDERING BOARD IN HTML
@@ -60,8 +60,7 @@ function generateBoard() {
             cellDiv.classList.add('cell')
             columnDiv.appendChild(cellDiv)
 
-            if (cell === 1) { cellDiv.classList.add('red') }
-            else if (cell === 2) { cellDiv.classList.add('black') }
+            if (cell === 1) { cellDiv.classList.add('red') } else if (cell === 2) { cellDiv.classList.add('black') }
         })
     })
 
@@ -69,15 +68,16 @@ function generateBoard() {
         document.getElementById(i).addEventListener('click', makePlay)
     }
 
-    if (gameOn){displayTurn()}
-    else{turnGameOff();
-    document.getElementById("")}
+    if (gameOn) { displayTurn() } else {
+        turnGameOff();
+        document.getElementById("")
+    }
 }
 // DISPLAY PLAYER TURN
-function displayTurn (){
+function displayTurn() {
     let turn = playerOneTurn ? playerOneName : playerTwoName
     topDiv.innerText = `Player Turn: ${turn}`
-    main.insertBefore(topDiv,board)
+    main.insertBefore(topDiv, board)
 }
 
 // MAKING MOVES IN ARRAY
@@ -94,7 +94,7 @@ function makePlay(event) {
         } else {
             boardArray[playCurrentDestination][moveIndexDestination] = 2
         }
-        
+
         winChecker()
         changePlayerTurn()
     }
@@ -116,15 +116,14 @@ function checkDraw() {
         drawCheckArray.push(column.lastIndexOf(0))
     });
 
-    if (JSON.stringify(drawCheckArray) === '[-1,-1,-1,-1,-1,-1,-1]') { displayDraw()}
+    if (JSON.stringify(drawCheckArray) === '[-1,-1,-1,-1,-1,-1,-1]') { displayDraw() }
 }
 
 function checkVerticalWin() {
     boardArray.forEach(column => {
         let columnString = column.join('')
 
-        if (columnString.includes('1111')) { displayWinner(playerOneName) }
-        else if (columnString.includes('2222')) { displayWinner(playerTwoName) }
+        if (columnString.includes('1111')) { displayWinner(playerOneName) } else if (columnString.includes('2222')) { displayWinner(playerTwoName) }
 
     });
 }
@@ -152,7 +151,7 @@ function checkHorizontalWin() {
     transposedArray.forEach(column => {
         let columnString = column.join('')
 
-        if (columnString.includes('1111')) {displayWinner(playerOneName)} 
+        if (columnString.includes('1111')) { displayWinner(playerOneName) }
         if (columnString.includes('2222')) { displayWinner(playerTwoName) }
     });
 }
@@ -177,16 +176,16 @@ function checkDiagonalWin() {
     arrayDiagonalLeft.forEach(column => {
         let columnString = column.join('')
 
-        if (columnString.includes('1111')) { displayWinner(playerOneName)  } 
-        if (columnString.includes('2222')) { displayWinner(playerTwoName)  } 
+        if (columnString.includes('1111')) { displayWinner(playerOneName) }
+        if (columnString.includes('2222')) { displayWinner(playerTwoName) }
     });
 
     arrayDiagonalRight.forEach(column => {
         let columnString = column.join('')
 
 
-        if (columnString.includes('1111')) { displayWinner(playerOneName)}
-        if (columnString.includes('2222')) {displayWinner(playerTwoName)}
+        if (columnString.includes('1111')) { displayWinner(playerOneName) }
+        if (columnString.includes('2222')) { displayWinner(playerTwoName) }
     });
 
 }
@@ -196,25 +195,25 @@ function winChecker() {
     checkHorizontalWin()
     checkVerticalWin()
     checkDiagonalWin()
-    }
-
-// Criar função que apresenta resultado
-function displayWinner (winner) {
-    gameOn = false
-    topDiv.innerHTML = `<p>Congratulations ${winner}, You Won!</p> <div id="restart">Restart Game</div>`
-    main.insertBefore(topDiv,board)
-    document.getElementById("restart").addEventListener("click",()=>location.reload())
 }
 
-function displayDraw (){
+// Criar função que apresenta resultado
+function displayWinner(winner) {
+    gameOn = false
+    topDiv.innerHTML = `<p> ${winner}, You Won!</p> <div id="restart">Restart Game</div>`
+    main.insertBefore(topDiv, board)
+    document.getElementById("restart").addEventListener("click", () => location.reload())
+}
+
+function displayDraw() {
     gameOn = false
     topDiv.innerHTML = `<p>That's a draw, try again!</p> <div id="restart">Restart Game</div>`
-    main.insertBefore(topDiv,board)
-    document.getElementById("restart").addEventListener("click",()=>location.reload())
+    main.insertBefore(topDiv, board)
+    document.getElementById("restart").addEventListener("click", () => location.reload())
 }
 
 function turnGameOff() {
-     for (let i = 0; i <= 6; i++) {
+    for (let i = 0; i <= 6; i++) {
         document.getElementById(i).removeEventListener('click', makePlay)
     }
 }
