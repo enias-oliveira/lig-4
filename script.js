@@ -30,12 +30,12 @@ let gameOn = true
 // GAME CONTROLS
 
 function start() {
-    playerOneName = document.getElementById("fPlayer").value;
-    playerTwoName = document.getElementById("sPlayer").value;
-
+    playerOneName = document.getElementById("fPlayer").value ;
+    if (playerOneName.length < 1) {playerOneName = 'Fire'}
+    playerTwoName = document.getElementById("sPlayer").value ;
+    if (playerTwoName.length < 1) {playerTwoName = 'Water'}
     document.getElementById("players").classList.add("hidden");
     document.getElementById("main").classList.remove("hidden")
-
     generateBoard()
 }
 
